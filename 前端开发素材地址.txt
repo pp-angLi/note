@@ -1,0 +1,144 @@
+preloaders.net -- 制作GIF
+www.loading.io -- 制作加载动画
+autoprefixer.github.io -- CSS兼容
+Font Awesome -- 设置图标字体
+Stack Overflow -- 代码查询网址
+
+//上面是各种网站
+
+line-height + text-align == 字体垂直 + 水平居中
+
+/*
+  attachEvent('onclick', function ()) == addEventListener();
+  detachEvent('onclick', function ()) == removeEventListner(); 
+
+//事件监听和解除事件监听要用同一个方法，且不能带参数。
+
+
+  IE8以下;
+  DOM中的事件对象
+  type == type
+  target == srcElement  
+  cancelBubble == true 的时候阻止冒泡
+  returnValue == true 的时候阻止默认行为
+  
+  event = event || window.event;
+*/
+addEventListener('click', function (), true/false); true--在事件处理时触发，false--在事件冒泡时触发
+
+removeEventListener();
+DOM中的事件对象
+（1）type -- 用于获取事件类型
+（2）target -- 用于获取事件目标
+（3）stopPropagation();//阻止事件冒泡
+（4）preventDefault();//组织事件的默认行为  例a标签
+
+/*
+var eventUtil = { //跨浏览器事件添加(IE8)以下
+    addHandler:function (element,type,handler){
+        if(element.addEventListener){
+            element.addEventListener(type,handler,false);
+        }
+        else if(element.attachEvent){
+            element.attachEvent('on'+type,handler);
+        }
+        else{
+            element['on' + type] = handler;
+            //element.onclick === element['onclick']
+        }
+    }
+}
+*/
+
+
+
+function getStyle(obj,attr){//用来获取样式的方法
+    if(obj.currentStyle){//IE用currentStyle。
+            return obj.currentStyle[attr];
+    }
+    else{//firefox用getComputedStyle来获取样式。
+        return getComputedStyle(obj,false)[attr];
+    }
+}
+
+letter-spacing -- 字间距 
+
+background-attachment: fixed;//背景图片保持在一个位置不动
+background-repeat: no-repeat; //不重复
+background-size: cover;//覆盖整个当前元素
+background-position: center center //确定背景的位置
+
+
+例;
+if(ele.addEventListener)
+{ele.addEventListener(type,hander,false);}
+
+else if(ele.attachEvent){ele.attachEvent('on'+type,hander);}
+
+else{ele['on'+type]=hander;}
+
+login_box.style.display="block";
+login_box.style.display="none";
+addEvent(login_btn,"click",showLogin)
+addEvent(close,"click",hideLogin);
+
+
+
+
+移动端
+<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
+<!-- `width=device-width` 会导致 iPhone 5 添加到主屏后以 WebApp 全屏模式打开页面时出现黑边  -->
+网页宽度默认等于屏幕宽度（width=device-width）
+width：宽度（数值 / device-width）（范围从200 到10,000，默认为980 像素）
+height：高度（数值 / device-height）（范围从223 到10,000）
+initial-scale：初始的缩放比例 （范围从>0 到10）
+minimum-scale：允许用户缩放到的最小比例
+maximum-scale：允许用户缩放到的最大比例
+user-scalable：用户是否可以手动缩 (no,yes) 
+
+
+
+var pet = {
+    words:'...',
+    speak: function (say) {
+        console.log(say + ' ' + this.words)
+    }
+}
+
+var dog = {
+    words: 'Wang'
+}
+pet.speak.call(dog, 'Speak');
+call方法把属于pet的this，变成属于dog的this，即改变this的上下文
+*/
+
+
+/*
+function Pet(words) {
+    this.words = words
+    this.speak = function () {
+        console.log(this.words)
+    }
+}
+
+function Dog(words){
+    Pet.call(this, words);
+    //或者 Pet.apply(this, arguments);
+}
+var dog = new Dog('Wang')
+dog.speak();
+
+属于继承范围
+*/
+
+图片自适应盒子宽高
+.zoomImage{
+    width:100%;
+    height:0;
+    padding-bottom: 100%;
+    overflow:hidden;
+16:33 2017/10/20
+}
+
+
+

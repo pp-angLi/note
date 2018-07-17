@@ -1,0 +1,38 @@
+npm install koa-generator
+//koa2项目生成器
+
+koa2 projectName
+//生成koa2项目
+
+cd projectName
+npm install
+//进入项目文件中, 并安装配置
+npm start
+//启动项目 -- 默认localhost:3000
+
+在根目录创建config目录
+-developmeng.js -- 开发环境的配合
+    module.exports = {
+	env:'development', // 环境名
+	port: 3001, //服务端口号
+	mogodb_url:'', //数据库地址
+	redis_url:'', // redis地址
+	redis_port:'' // redis端口号
+}
+
+-test.js -- 测试环境的而配置内容
+module.exports = {
+    env: 'test', // 环境名称
+    port: '3002', // 服务端口号
+    mongodb_url: '', //数据库地址
+    redis_url: '', //redis地址
+    redis_port:'', //redis端口号
+}
+-index.js
+var development_env = require('./development');
+var test_env = require('./test');
+
+module.exports = {
+	development:development_env,
+	test:test_env
+}[process.env.NODE_ENV || 'development']

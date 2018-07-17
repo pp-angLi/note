@@ -1,0 +1,22 @@
+createServer(function (req, res)).listen -- 创建服务器  
+function -- 回调函数
+req -- 请求体  -- 获取请求的相关信息（从什么url来的，是get还是post）
+res -- 响应体 -- 告诉服务器给请求响应什么内容
+.listen  -- 监听 
+
+protbcol -- 协议
+slashes -- 是否有协议的双实线
+host -- http服务器的ID地址/域名
+port -- 端口（默认是80）
+hostname -- 主机名
+hash -- 哈希值
+search -- 查询字符串参数
+query -- 发送给服务器的数据
+pathname -- 访问资源路径名
+path -- 路径
+href -- 完整的超链接
+
+/*
+
+
+

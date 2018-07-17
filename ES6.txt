@@ -1,0 +1,235 @@
+http://es6.ruanyifeng.com/#docs/string 
+
+1..(1)定义 let 会出现暂时性死区, 即在当前区域内, 只能先定义let再使用, 否则都出错(ReferenceError), 
+   (2)且不允许重复声明
+
+2..
+(1)let [x = 1] = [];//x = 1;
+(2)let [x = 2] = [undefined]; //x = 2;
+(3)let [x = f()] = [3]; //x = 3;
+f() {
+ return 4;
+}
+(4)总结:优先级 [x=1]>[x=f()]=[3]>[x]=[undefined]
+
+
+3..indexOf()：返回布尔值, 用法与includes一样
+   includes()：返回布尔值，表示是否找到了参数字符串。 // includes('a')
+   startsWith()：返回布尔值，表示参数字符串是否在原字符串的头部。
+   endsWith()：返回布尔值，表示参数字符串是否在原字符串的尾部。
+
+   例          
+   var input = document.getElementById('input');
+    var box = document.getElementById('box').innerHTML;
+    input.oninput = function () {
+        if(box.includes(input.value)) {
+           console.log(input.value)
+        }
+
+
+
+4..在 `` 中的 ${} 可以${变量值/ 函数/表达式} 并且${}中是可嵌套的
+
+
+5..$('#list').html(`
+    <ul>
+      <li>first</li>
+      <li>second</li>
+    </ul>
+   `.trim()); ``.trim()消除换行
+
+6. function m1({x = 0, y = 0} = {}) {
+	return [x,y];
+    }
+    function m2({x,y} = {x:0,y:0}) {
+	return [x,y];
+    }
+m1() // [0,0]
+m2() // [0,0]
+
+m1({x: 3, y: 8}) // [3, 8]
+m2({x: 3, y: 8}) // [3, 8]
+
+m1({x: 3}) // [3, 0]
+m2({x: 3}) // [3, undefined]
+
+m1({}) // [0, 0];
+m2({}) // [undefined, undefined]
+
+m1({z: 3}) // [0, 0]
+m2({z: 3}) // [undefined, undefined]
+
+ // 那是因为 m2中 {x,y} = {x:0,y:0}当赋值对象时{}, 是改变后面{x:0,y:0}的值, 而对象中的值为underfined, 所以当向m2中赋空值对象时就为underfined
+
+ // m1中{x:0,y:0} = {} 代表, 当赋值的{} !== underfined时, 都未所赋的值, 而当赋值===underfined时, 则为默认值
+
+7.但是，箭头函数导致this总是指向函数定义生效时所在的对象
+
+function Timer() {
+  this.s1 = 0;
+  this.s2 = 0;
+  // 箭头函数
+  setInterval(() => this.s1++, 1000);
+  // 普通函数
+  setInterval(function () {
+    this.s2++;
+  }, 1000);
+}
+
+var timer = new Timer();
+
+setTimeout(() => console.log('s1: ', timer.s1), 3100);
+setTimeout(() => console.log('s2: ', timer.s2), 3100);
+// s1: 3
+// s2: 0
+
+
+8..
+        (() => {
+          const a = 'abc';
+          for(i in a) { // 通常用来遍历对象, 因为他的遍历不一定是按顺序的
+            console.log(a[i]);
+          }
+        })();
+
+        (() => {
+          const a = ['a','b','c','d','e']
+          for(i of a) { // 通常用来遍历数组, 对比for in 与for of for of 是遍历出键值
+            // for (let index of ['a', 'b'].keys()) { key -- 键名, values()是对键值  entries()是对键值对
+            console.log(i);
+          }
+        })();
+
+9..
+        console.log(Number.parseInt(123.12)); // es6
+        console.log(parseInt(321.12));	//es5
+
+
+10..
+        add = (...values) => {  // 解析如8
+            let sum = 0;
+            for(var val of values) {
+                sum += val;
+            }
+            return sum;
+        }
+
+        console.log(add(2,3,5));
+
+11..
+
+	let key = 'ok'; /// es6 在对象中可使用表达式
+            let a = {
+                ['a' + 'bc']: 123,
+                [key]: 321
+            }
+
+            console.log(a['abc'], a[key], a['a'+'bc'], a['ok']);
+
+
+12..
+let proto = {};
+let obj = { x: 10 };
+Object.setPrototypeOf(obj, proto);
+
+proto.y = 20;
+proto.z = 40;
+
+obj.x // 10
+obj.y // 20
+obj.z // 40
+上面代码将proto对象设为obj对象的原型，所以从obj对象可以读取proto对象的属性。
+
+13..
+注意，super关键字表示原型对象时，只能用在对象的方法之中，用在其他地方都会报错。
+
+必须 {
+	foo:function () {
+		return super.xxx
+	}
+}
+const proto = {
+  x: 'hello',
+  foo() {
+    console.log(this.x);
+  },
+};
+
+const obj = {
+  x: 'world',
+  foo() {
+    super.foo();
+  }
+}
+
+Object.setPrototypeOf(obj, proto);
+
+obj.foo() // "world"
+上面代码中，super.foo指向原型对象proto的foo方法，但是绑定的this却还是当前对象obj，因此输出的就是world。
+
+14..
+这就提供了去除数组重复成员的另一种方法。
+
+function dedupe(array) {
+  return Array.from(new Set(array));
+}
+
+dedupe([1, 1, 2, 3]) // [1, 2, 3]
+
+15..
+let a = new Set([1, 2, 3]);
+let b = new Set([4, 3, 2]);
+
+// 并集
+let union = new Set([...a, ...b]);
+// Set {1, 2, 3, 4}
+
+// 交集
+let intersect = new Set([...a].filter(x => b.has(x)));
+// set {2, 3}
+
+// 差集
+let difference = new Set([...a].filter(x => !b.has(x)));
+// Set {1}
+
+18..
+前面已经提过，Map 转为数组最方便的方法，就是使用扩展运算符（...）。
+
+const myMap = new Map()
+  .set(true, 7)
+  .set({foo: 3}, ['abc']);
+[...myMap]
+// [ [ true, 7 ], [ { foo: 3 }, [ 'abc' ] ] ]
+
+19..上面代码在p1的原型上添加了一个printName方法，由于p1的原型就是p2的原型，因此p2也可以调用这个方法。而且，此后新建的实例p3也可以调用这个方法。这意味着，使用实例的__proto__属性改写原型，必须相当谨慎，不推荐使用，因为这会改变“类”的原始定义，影响到所有实例。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

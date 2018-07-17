@@ -1,0 +1,26 @@
+安装 npm 时，用cnpm（淘宝映像）比较快。
+
+在package.json中修改name，才可以正确执行$grunt
+（该name -- 某需要压缩的js的文件名（如fight.js）name -- fight）。
+
+Contrib-clean——清空文件、文件夹；
+
+Contrib-copy——复制文件、文件夹
+
+karma——前端自动化测试工具
+
+自动化代码的测试：contrib-qunit*
+
+合并文件：grunt-contrib-concat*
+
+js语法检查：grunt-contrib-jshint*
+
+css语法检查：grunt-contrib-cssmin
+
+Scss 编译：grunt-contrib-sass
+
+压缩文件：grunt-contrib-uglify*
+
+监听文件变动：grunt-contrib-watch*
+
+建立本地服务器：grunt-contrib-connect

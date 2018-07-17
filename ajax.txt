@@ -1,0 +1,17 @@
+method   //数据的提交方式：get和post
+url   //数据的提交路劲
+async   //是否支持异步刷新，默认是true
+data    //需要提交的数据
+dataType   //服务器返回数据的类型，例如xml,String,Json等
+success    //请求成功后的回调函数
+error   //请求失败后的回调函数
+
+$.ajax({  
+    type   //数据的提交方式：get和post
+    url   //数据的提交路劲
+    async   //是否支持异步刷新，默认是true
+    data    //需要提交的数据
+    dataType   //服务器返回数据的类型，例如xml,String,Json等
+    success    //请求成功后的回调函数
+    error   //请求失败后的回调函数 
+});  

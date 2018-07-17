@@ -1,0 +1,12 @@
+（1）创建文件 再 yo fountain-webapp
+
+由于电脑有问题
+
+一直回车就可以，
+
+到 DO you want a sample app？
+
+则向上移动一格即可。
+
+去mytodo\src\app\components\TodoTextInput.js
+注释掉 59行 和 40 行

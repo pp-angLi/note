@@ -1,0 +1,11 @@
+<head>
+<meta charset="utf-8">
+<title>渲染 HTML5</title>
+  <!--[if lt IE 9]>
+  <script src="http://cdn.static.runoob.com/libs/html5shiv/3.7/html5shiv.min.js"></script>
+  <![endif]-->
+</head>
+
+
+
+导入的script(必须放head里,因为要先加载再识别)可以让IE6-8识别h5新特性

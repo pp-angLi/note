@@ -1,0 +1,24 @@
+var user = '1';
+
+var a = {
+user: '2',
+fn : function () {
+     console.log(this.user); // 这个this是只引用这个函数的对象的上下文
+    }
+}
+
+a.fn(); // 2
+
+var b = a.fn;
+b(); // 1  b属于全域, 所以this指向window
+
+b.call(a); // 2
+
+b.apply(a); // 2
+
+call 与 apply 的用法差不多, 都是指向"x.call(a)" x,而apply第二个参数要接数组
+
+var c = b.bind(a);
+c(); // 2
+
+bind用法也是指向b, 但是返回的确实一个方法, 用法如上

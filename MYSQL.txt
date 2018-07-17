@@ -1,0 +1,1 @@
+连接本机：mysql -u root -p 按Enter键后输入密码

@@ -1,0 +1,81 @@
+教程中还未连接服务器，一切正常。
+
+当需要连接服务器的时候，注意 -- 
+
+更新 mongodb 目前 17.11.7 版本号为 3.4.9
+
+更新 connect-mongo 目前 17.11.7 版本号为 2.0.0
+
+更新 express-session 目前 17.11.7 版本号为 1.15.6
+
+添加组件，应该这样写  npm install (模块名) --save
+
+supervisor  修改文件时帮忙重新启动
+install后在package.json中修改script中的node ./bin/www为supervisor ./bin/www
+
+每次都要重启数据库 --
+在E:\mongodb\bin下启动 ./mongod --dbpath ../blog/
+
+启动服务器npm start
+
+bin, 存放启动项目的脚本文件
+node_modules, 存放所有的项目依赖库。
+public，静态文件(css,js,img)
+routes，路由文件(MVC中的C,controller)
+views，页面文件(Ejs模板)
+package.json，项目依赖配置及开发者信息
+app.js，应用核心配置文件
+
+app.js 中
+var index = require("./routes/index"); --访问localhost:3000
+var users= require("./routes/users"); --localhost:3000/users
+app.use("/",index);
+app.use("/users",users);
+即定义读取router路由中的xxx.js文件为指定路由
+
+
+向app.js中添加
+//新的代码
+var mongo = require('mongodb');
+var monk = require('monk');
+var db = monk('localhost:27017/xxx');
+
+即可以连接mongodb
+//连接数据库到路由件, 必须要在app.use('/',index);之前
+app.use(function (req, res, next) {
+    req.db = db;
+    next();
+});
+
+将路由设在routes/index中
+修改app.js 
+将var index = require('./routes/index')
+var users = require('./routes/uers'); -->
+var routes = require('./routes/index');
+
+将app.use('/',index), app.use('/users',users) -->
+routes(app);
+app.listen(app.get('port'), function() {
+  console.log('Express server listening on port ' + app.get('port'));
+});
+
+将index.js -->
+module.exports = function(app) {
+  app.get('/', function (req, res) {
+    res.render('index', { title: 'Express' });
+  });
+};
+
+
+html模板 -- 
+var ejs = require('ejs');
+app.engine('html", ejs.__express);
+app.set('view engine', 'html');
+
+
+
+
+
+
+
+

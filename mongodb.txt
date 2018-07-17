@@ -1,0 +1,36 @@
+./mongod --dbpath ../blog/
+启动
+
+db.usercollection.insert({ "username" : "testuser1", "email" : "testuser1@testdomain.com" })
+插入一条数据
+
+newstuff = [{ "username" : "testuser2", "email" : "testuser2@testdomain.com" }, { "username" : "testuser3", "email" : "testuser3@testdomain.com" }]
+
+
+db.usercollection.insert(newstuff);
+
+插入多条数据
+
+db.usercollection.find().pretty()查询数据库
+
+在mongod --dbpath c:\node\nodetest1\data\ 之后, 
+打开另一个命令行界面, 输入mongo
+再use dbname, 就可以进入数据库, 对数据进行操作
+
+基础语句查询https://www.cnblogs.com/fengnovo/p/6220724.html
+
+String      字符串
+Number      数字    
+Date        日期
+Buffer      二进制
+Boolean     布尔值
+Mixed       混合类型
+ObjectId    对象ID    
+Array       数组
+
+
+get主要用于向用户传输数据, 
+post主要用于数据库接受数据
+
+render -- 跳转, 网页(可以自己输入数据)
+redirect -- 跳转, 接口(保存后, 传递给数据库, 再由数据库传递数据给目标页面)

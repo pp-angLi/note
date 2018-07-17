@@ -1,0 +1,17 @@
+cd e: ... -- 到特定文件
+
+git init
+git add .
+git commit -m "描述"
+
+若未关联仓库, 则
+git remote add origin (git.com)
+若报错,
+则先git remote rm origin 
+再Git remote add origin(git.com)
+
+第一次push 
+git push -u origin master
+
+
+git push origin master
