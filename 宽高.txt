@@ -19,3 +19,5 @@ clientTop：表示边框border的厚度，在未指定的情况下一般为0
 
 
 scrollTop：滚动后被隐藏的高度，获取对象相对于由offsetParent属性指定的父坐标(css定位的元素或body元素)距离顶端的高度
+
+documentElement.scrollTop === 被隐藏的高度

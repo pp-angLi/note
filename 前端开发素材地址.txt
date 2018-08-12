@@ -1,5 +1,5 @@
 preloaders.net -- 制作GIF
-www.loading.io -- 制作加载动画
+loading.io -- 制作加载动画
 autoprefixer.github.io -- CSS兼容
 Font Awesome -- 设置图标字体
 Stack Overflow -- 代码查询网址
@@ -79,7 +79,7 @@ else{ele['on'+type]=hander;}
 
 login_box.style.display="block";
 login_box.style.display="none";
-addEvent(login_btn,"click",showLogin)
+addEvent(login_btn,"click",showLogin);
 addEvent(close,"click",hideLogin);
 
 

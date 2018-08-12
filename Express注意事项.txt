@@ -72,7 +72,8 @@ var ejs = require('ejs');
 app.engine('html", ejs.__express);
 app.set('view engine', 'html');
 
-
+express ´´½¨ ejsÄ£°å
+express --view=ejs a
 
 
 
