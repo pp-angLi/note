@@ -1,0 +1,61 @@
+git add xx
+git commit -m "aa"
+git remote add origin xx // 添加远程仓库
+
+git remote (-v) // 查看远程仓库
+
+git status 当前版本的状态
+
+git diff 查看当前所有文件与上版本的所有文件的不同
+git diff HEAD xxx // 查看当前文件与当前文件版本的不同
+git log // 查看有多少个版本
+
+git reset --hard HEAD^^^^^ // 版本回档
+git reflog // 查看曾经的换版本的操作
+
+git checkout xxx // 将文件返回到上一次add 或者 commit 时的文件状态
+git reset HEAD xxx // 撤销已经add的文件
+
+git rm xx // 删除
+
+git push -u origin master 推送到远程仓库的master分支(第一次)
+git push origin master 把本地的master分支推送到远程仓库中去
+
+git clone git@xx.com.git // 克隆
+
+git branch // 查看分支
+git checkout xx // 切换到分支
+git merge xx // 将分支合并到当前分支上
+git branch -d xx // 删除分支 (-D强行删除)
+git branch -b xx // 添加分支
+
+git stash // 储藏当前工作现场
+git stash list // 查看工作现场列表
+git stash apply // 恢复工作现场
+git stash stash@{0} // 恢复到指定的工作现场
+git stash drop // 删除工作现场
+git stash pop // 恢复并删除工作现场
+
+git remote // 查看远程仓库的信息(-v更详细)
+
+git pull // 将最新提交文件的抓下来
+git tag<xxx> // 在所在的分支, 为这分支打标签
+git tag // 查看所有标签
+
+git config --list // 查看个人配置
+
+git fetch origin // 从远程仓库获取数据
+git rebase // 重新调整基线
+
+********在切换至远程分支前, 先新建一个本地分支, 比较安全保险
+
+ --- 第一次抓取且提交, 
+git remote add origin xx - git fetch (origin) - git branch --set-upstream-to=origin/master master - git rebase - git push
+git fetch origin -> git checkout xx 切换到远程分支
+git pull --rebase origin master //我们把远程库同步到本地库就可以了
+
+第一次git init, 需要先执行一次git add , git commit 后, 方可出现master分支, 才能创建分支
+
+git push origin f-category #将此分支推到远程，并在远程创建分支（或者 f-category:dev方式推送到远程分支）
+
+git rm --cached <file>...
